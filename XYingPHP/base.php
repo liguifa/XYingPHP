@@ -11,6 +11,7 @@ if(config::$system["sys_debug"])
 {
 	Init::XYing_Init();
 }
+Cache::cache_start();
 $dir=array(APP_PATH);
 $num=1;
 for($i=0;$i<$num;$i++)
@@ -45,4 +46,5 @@ for($i=0;$i<$num;$i++)
     }
 }
 Route::Action();
+Cache::cache_end();
 ?>

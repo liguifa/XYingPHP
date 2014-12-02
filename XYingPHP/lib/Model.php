@@ -18,9 +18,96 @@ class Model extends SqlHelper
 		return $m;
 	}
 
-	public function SaveChang()
+	public function SaveChange()
 	{
-		return $this->Updata()->Where()->Exec();
+		return $this->Update()->Where()->Exec();
+	}
+
+	public function Add()
+	{
+		return $this->Insert()->From(get_class($this))->Exec();
+	}
+
+	public function Delete()
+	{
+		return $this->Delete()->Where()->Exec();
+	}
+
+	public function Count($arr)
+	{
+		$models=$this->Exec();
+		foreach($models as $r)
+		{
+			if($r[$models[]])
+		}
+	}
+
+	public function Sum($col)
+	{
+		$models=$this->Exec();
+		$sum=0;
+		foreach($models as $m)
+		{
+			$sum+=$m[$col];
+		}
+		return $sum;
+	}
+
+	public function Min($col)
+	{
+		$models=$this->Exec();
+		foreach($models as $m)
+		{
+			if(!isset($min))
+			{
+				$min=$m[$col];
+				break;
+			}
+			else
+			{
+				if($min>$m[$col])
+				{
+					$min=$m[$col];
+				}
+			}
+		}
+		return $min;
+	}
+
+	public function Max($col)
+	{
+		$models=$this->Exec();
+		foreach($models as $m)
+		{
+			if(!isset($max))
+			{
+				$max=$m[$col];
+			}
+			else
+			{
+				if($max<$m[$col])
+				{
+					$max=$m[$col];
+				}
+			}
+		}
+		return $max;
+	}
+
+	public function Average()
+	{
+		$models=$this->Exec();
+		$sum=0;
+		foreach($models as $m)
+		{
+			$sum+=$m[$col];
+		}
+		return intval($sum/sizeof($models));
+	}
+
+	public function Aggregate()
+	{
+		//TODO
 	}
 
 	public static function Statement()

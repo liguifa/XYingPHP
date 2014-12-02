@@ -1,7 +1,6 @@
 <?php
 class Cache
 {
-
   public static function cache_start()
   {
     $_time=config::$system["cache_time"];
