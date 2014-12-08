@@ -7,11 +7,12 @@ require_once "lib/FileOperation.php";
 require_once "Route/Route.php";
 require_once "lib/Init.php";
 require_once "Cache/Cache.php";
+require_once "lib/StatusAttribute.php";
 if(config::$system["sys_debug"])
 {
 	Init::XYing_Init();
+    Cache::cache_start();
 }
-Cache::cache_start();
 $dir=array(APP_PATH);
 $num=1;
 for($i=0;$i<$num;$i++)
@@ -45,6 +46,9 @@ for($i=0;$i<$num;$i++)
         closedir($dh);
     }
 }
+if(config::$system["sys_debug"])
+{
+    Cache::cache_end();
+}
 Route::Action();
-Cache::cache_end();
 ?>

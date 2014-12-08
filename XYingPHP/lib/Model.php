@@ -5,8 +5,9 @@ class Model extends SqlHelper
 
 	public function Create()
 	{
-		$models=$this->Exec();
+		$models=$this->exec();
 		$m=array();
+
 		foreach($models as $model)
 		{
 			foreach($model as $key => $value)
@@ -20,12 +21,12 @@ class Model extends SqlHelper
 
 	public function SaveChange()
 	{
-		return $this->Update()->Where()->Exec();
+		//return $this->Update()->Where()->Exec();
 	}
 
 	public function Add()
 	{
-		return $this->Insert()->From(get_class($this))->Exec();
+		return $this->Insert()->From(get_class($this))->exec();
 	}
 
 	public function Delete()
@@ -38,7 +39,7 @@ class Model extends SqlHelper
 		$models=$this->Exec();
 		foreach($models as $r)
 		{
-			if($r[$models[]])
+			// if($r[$models[]])
 		}
 	}
 
@@ -129,12 +130,18 @@ class Model extends SqlHelper
 
 	public function __set($property_name, $value)
 	{
-		if($this->$property_name!=$value)
+		if(!dataInfo::$admins["$property_name"]["isKey"])
 		{
-			$ChangeData[]=array("$property_name" => "$value");
-			$this->$property_name = $value;
+			if($this->$property_name!=$value)
+			{
+				$ChangeData[]=array("$property_name" => "$value");
+				$this->$property_name = $value;
+			}
 		}
-		
+		else
+		{
+			return false;
+		}
 	}
 
 	public function ToJson()

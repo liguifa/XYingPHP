@@ -1,4 +1,5 @@
-<?php class users extends Model{
+<?php 
+class users extends Model{
 private $user_Id;
 private $user_Username;
 private $user_Password;
@@ -12,4 +13,5 @@ private $user_Status;
 private $user_BlogThemeId;
 private $user_IsDel;
 private $user_RegTime;
-}?>
+}
+?>

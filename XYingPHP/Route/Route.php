@@ -32,7 +32,7 @@ class Route
 		}
 		catch(Exception $e)
 		{
-			echo "404";
+			echo $e;
 		}
 	}
 }

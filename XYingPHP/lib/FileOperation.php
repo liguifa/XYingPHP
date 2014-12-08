@@ -131,7 +131,36 @@ class FileOperation
 		return self::$text;
 	}
 
-	public static function ForReaderReplace($fileName,$subString)
+	public static function IfReaderReplace($fileName,$subString)
+	{
+		self::ReadAll($fileName);
+		foreach($subString as $key => $array)
+		{
+			$str_start="@if_$key";
+			$str_end="@ifend_$key";
+			$arr=split("$str_start", self::$text);
+			$a_end=split("$str_end", $arr[1]);
+			$arr[1]=$a_end[0];
+			$arr[2]=$a_end[1];
+			foreach($array as $a_key => $a)
+			{
+				$case_start="@case_$a_key"."_start";
+				$case_end="@case_$a_key"."_end";
+				$c_arr=split("$case_start", $arr[1]);
+				$c_arr=split("$case_end", $c_arr[1]);
+				$str=$c_arr[0];
+				foreach($a as $k => $value)
+				{
+					$str=str_replace("@$k",$value,$str);
+				}
+				$arr[0].=$str;
+			}
+			self::$text=$arr[0].$arr[2];
+		}
+		return self::$text;
+	}
+
+	public static function ForReadeReplace($fileName,$subString)
 	{
 		self::ReadAll($fileName);
 		foreach($subString as $key => $array)

@@ -1,4 +1,5 @@
-<?php class news extends Model{
+<?php 
+class news extends Model{
 private $new_Id;
 private $new_Title;
 private $new_Brief;
@@ -10,4 +11,5 @@ private $new_UserId;
 private $new_IsReview;
 private $new_ScanNumber;
 private $new_Class;
-}?>
+}
+?>
